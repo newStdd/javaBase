@@ -27,7 +27,4 @@
 			<url>http://10.1.247.2:8081/nexus/content/repositories/snapshots/</url>
 		</repository>
 	</distributionManagement>	
-	<build>
-		<finalName>bCloudPartnerPortal</finalName>
-	</build>
 </project>
