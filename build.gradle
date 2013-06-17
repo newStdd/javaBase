@@ -1,26 +1,9 @@
 apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'eclipse-wtp'
+apply plugin: 'eclipse'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies { 
-	//单文件 
-	compile files('lib/pushlet.jar')
-	//目录
-	compile fileTree(dir: 'libs', include: '*.jar')
-	compile 'org.springframework:spring-webmvc:3.1.2.RELEASE'  
-	compile 'javax.servlet:javax.servlet-api:3.0.1'
-} 
-
-eclipse {
-  wtp {
-    facet {
-      facet name: 'java', version: '1.7'
-      facet name: 'jst.web', version: '3.0'
-      facet name: 'wst.jsdt.web', version: '1.0'
-		}
-	}
 }
