@@ -1,9 +1,16 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+System.setProperty('http.proxyHost', '127.0.0.1') 
+System.setProperty('http.proxyPort', '80')
+
 repositories {
 	mavenCentral()
 }
 
 dependencies { 
+	compile fileTree(dir: 'lib', include: '*.jar')
+	compile 'redis.clients:jedis:2.1.0'
+	compile 'log4j:log4j:1.2.17'
+	compile 'com.google.guava:guava:14.0.1'	
 }

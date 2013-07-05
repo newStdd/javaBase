@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!-- pool配置 -->
+	<entry key="maxActive">20</entry>
+	<entry key="maxIdle">10</entry>
+	<entry key="maxWait">1000</entry>
+	<entry key="testOnBorrow">true</entry>
+<!-- jedis pool配置 -->	
+	<entry key="host">10.1.249.31</entry>
+	<entry key="port">22122</entry>
+	<entry key="hostPortList">10.1.249.34:6379-6384</entry>
+</properties>
