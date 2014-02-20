@@ -1,8 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-System.setProperty('http.proxyHost', '127.0.0.1') 
-System.setProperty('http.proxyPort', '80')
+//System.setProperty('http.proxyHost', '127.0.0.1') 
+//System.setProperty('http.proxyPort', '80')
 
 repositories {
 	mavenCentral()
