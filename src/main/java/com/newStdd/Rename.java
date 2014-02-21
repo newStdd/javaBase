@@ -11,7 +11,7 @@ public class Rename {
 		File[] files= directory.listFiles();
 		for (File file: files) {
 			System.out.println(file.getName()+ ": "+ DateUtil.getDateString(file.lastModified(), DateUtil.dateFormatYyyy_MM_dd_HH_mm_ss));
-			file.renameTo(new File("junk.dat"));
+//			file.renameTo(new File("junk.dat"));
 		}
 	}
 }

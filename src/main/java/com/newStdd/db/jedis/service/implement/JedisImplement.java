@@ -23,8 +23,8 @@ public class JedisImplement implements JedisService {
 				Properties pro = new Properties();
 				ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 				InputStream inputStream = classLoader.getResourceAsStream("redisConfig.xml");
-					pro.loadFromXML(inputStream);
-					inputStream.close() ;
+				pro.loadFromXML(inputStream);
+				inputStream.close() ;
 				String maxActive = pro.getProperty("maxActive");
 				String maxIdle = pro.getProperty("maxIdle");
 				String maxWait = pro.getProperty("maxWait");

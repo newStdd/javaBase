@@ -14,3 +14,5 @@ dependencies {
 	compile 'log4j:log4j:1.2.17'
 	compile 'com.google.guava:guava:14.0.1'	
 }
+
+[compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
