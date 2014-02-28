@@ -24,7 +24,6 @@ import kafka.producer.ProducerConfig;
 
 import redis.clients.jedis.Jedis;
 
-import com.google.common.collect.ImmutableMap;
 import com.newStdd.db.jedis.service.implement.JedisImplement;
 import com.newStdd.util.DateUtil;
 

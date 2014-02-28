@@ -4,14 +4,17 @@ import java.io.File;
 import java.text.ParseException;
 
 import com.newStdd.util.DateUtil;
+import com.newStdd.util.FileUtil;
 
 public class Rename {
 	public static void main(String[] args) throws ParseException {
-		File directory= new File("d:\\dcim");
-		File[] files= directory.listFiles();
+		String directory= "d:\\新建文件夹\\";
+		File fileDirectory= new File(directory);
+		File[] files= fileDirectory.listFiles();
 		for (File file: files) {
-			System.out.println(file.getName()+ ": "+ DateUtil.getDateString(file.lastModified(), DateUtil.dateFormatYyyy_MM_dd_HH_mm_ss));
-//			file.renameTo(new File("junk.dat"));
+			String newFileName=DateUtil.getDateStringZh(file.lastModified());
+			System.out.println(file.getName()+ ": "+ newFileName);
+			file.renameTo(new File(directory+ newFileName+ "."+ FileUtil.getFileExtension(file)));
 		}
 	}
 }
