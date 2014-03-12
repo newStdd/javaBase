@@ -16,7 +16,7 @@ public class DateUtil {
 	/**
 	 * 日期格式：yyyy-MM-dd HH:mm:ss.SSSSSS
 	 * */	
-	public static String dateFormatYyyy_MM_dd_HH_mm_ss_ssssss= "yyyy-MM-dd HH:mm:ss.SSSSSS";
+	public static String dateFormatYyyy_MM_dd_HH_mm_ss_SSSSSS= "yyyy-MM-dd HH:mm:ss.SSSSSS";
 	
 	/**
 	 * 获取指定日期格式的系统时间字符串
