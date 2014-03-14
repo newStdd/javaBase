@@ -1,12 +1,13 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
 
 //System.setProperty('http.proxyHost', '127.0.0.1') 
 //System.setProperty('http.proxyPort', '80')
 
 repositories {
-	//maven{ url "http://10.1.249.149:8081/nexus/content/groups/public/"  }
-	mavenCentral()
+	maven{ url "http://localhost:8081/nexus/content/groups/public/"  }
+	//mavenCentral()
 }
 
 dependencies { 
@@ -17,3 +18,23 @@ dependencies {
 }
 
 [compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+			groupId "com.newStdd"
+			artifactId "javaBase"
+			version "0.0.1-SNAPSHOT"     
+            from components.java
+        }
+    }
+        repositories {
+            maven {
+                url  "http://localhost:8081/nexus/content/repositories/snapshots/"
+                credentials {
+                    username = "deployment"
+                    password = "deployment123"
+                }
+            }
+        }   
+}
