@@ -13,7 +13,6 @@ public class Rename {
 		File[] files= fileDirectory.listFiles();
 		for (File file: files) {
 			String newFileName=DateUtil.getDateStringZh(file.lastModified());
-			System.out.println(file.getName()+ ": "+ newFileName);
 			file.renameTo(new File(directory+ newFileName+ "."+ FileUtil.getFileExtension(file)));
 		}
 	}
