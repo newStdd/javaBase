@@ -12,8 +12,16 @@ public class Rename {
 		File fileDirectory= new File(directory);
 		File[] files= fileDirectory.listFiles();
 		for (File file: files) {
-			String newFileName=DateUtil.getDateStringZh(file.lastModified());
-			file.renameTo(new File(directory+ newFileName+ "."+ FileUtil.getFileExtension(file)));
+			long date= file.lastModified();
+			while (true) {
+				String newFileName=DateUtil.getDateStringZh(date);
+				if (file.renameTo(new File(directory+ newFileName+ "."+ FileUtil.getFileExtension(file)))) {
+					break;
+				} else {
+					date+= 1000;
+				}
+			}
 		}
+		System.out.println("处理完毕！");
 	}
 }

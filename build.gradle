@@ -6,7 +6,7 @@ apply plugin: 'maven-publish'
 //System.setProperty('http.proxyPort', '80')
 
 repositories {
-	//maven{ url "http://localhost:8081/nexus/content/groups/public/"  }
+	//maven{ url "http://172.168.1.211:8081/nexus/content/groups/public/"  }
 	mavenCentral()
 }
 
@@ -24,17 +24,23 @@ publishing {
         mavenJava(MavenPublication) {
 			groupId "com.newStdd"
 			artifactId "javaBase"
-			version "0.0.1-SNAPSHOT"     
+			version "1.0"     
             from components.java
         }
     }
         repositories {
             maven {
-                url  "http://localhost:8081/nexus/content/repositories/snapshots/"
+                url  "http://172.168.1.211:8081/nexus/content/repositories/releases/"
                 credentials {
-                    username = "deployment"
-                    password = "deployment123"
+                    username = "admin"
+                    password = "admin123"
                 }
             }
         }   
+}
+
+eclipse {
+    classpath {
+       downloadSources=false
+    }
 }
