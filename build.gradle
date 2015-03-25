@@ -6,8 +6,8 @@ apply plugin: 'maven-publish'
 //System.setProperty('http.proxyPort', '80')
 
 repositories {
-	//maven{ url "http://172.168.1.211:8081/nexus/content/groups/public/"  }
-	mavenCentral()
+	maven{ url "http://127.0.0.1:8081/nexus/content/groups/public/"  }
+	//mavenCentral()
 }
 
 dependencies { 
@@ -30,7 +30,7 @@ publishing {
     }
         repositories {
             maven {
-                url  "http://172.168.1.211:8081/nexus/content/repositories/releases/"
+                url  "http://127.0.0.1:8081/nexus/content/repositories/releases/"
                 credentials {
                     username = "admin"
                     password = "admin123"
