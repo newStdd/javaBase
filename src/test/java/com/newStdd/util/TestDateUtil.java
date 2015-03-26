@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * 测试时间工具类
+ * 测试时间工具类DateUtil
  * */
 public class TestDateUtil {
 	/**
