@@ -5,18 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 时间工具
+ * 时间工具类
  * */
 public class DateUtil {
 	
 	/**
 	 * 日期格式：yyyy-MM-dd HH:mm:ss
 	 * */	
-	public static String dateFormatYyyy_MM_dd_HH_mm_ss= "yyyy-MM-dd HH:mm:ss";
+	public static String dateFormatYyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
 	/**
 	 * 日期格式：yyyy-MM-dd HH:mm:ss.SSSSSS
 	 * */	
-	public static String dateFormatYyyy_MM_dd_HH_mm_ss_SSSSSS= "yyyy-MM-dd HH:mm:ss.SSSSSS";
+	public static String dateFormatYyyy_MM_dd_HH_mm_ss_SSSSSS = "yyyy-MM-dd HH:mm:ss.SSSSSS";
 	
 	/**
 	 * 获取指定日期格式的系统时间字符串
@@ -47,6 +47,6 @@ public class DateUtil {
 	public static String getDateStringZh(Long date) {
 		DateFormat dateFormat= new SimpleDateFormat(dateFormatYyyy_MM_dd_HH_mm_ss);
 		String formatString= dateFormat.format(new Date(date));
-		return formatString.substring(0, 4)+ "年"+ formatString.substring(5, 7)+ "月"+ formatString.substring(8, 10)+ "日"+ formatString.substring(11, 13)+ "点"+ formatString.substring(14, 16)+ "分"+ formatString.substring(17, 19)+ "秒";
+		return formatString.substring(0, 4) + "年"+ formatString.substring(5, 7)+ "月"+ formatString.substring(8, 10)+ "日"+ formatString.substring(11, 13)+ "点"+ formatString.substring(14, 16)+ "分"+ formatString.substring(17, 19)+ "秒";
 	}		
 }
