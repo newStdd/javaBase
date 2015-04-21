@@ -6,9 +6,9 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 import com.newStdd.io.FileFoundException;
+import com.newStdd.io.FileUtil;
 import com.newStdd.io.RootNotFoundException;
 import com.newStdd.util.DateUtil;
-import com.newStdd.util.FileUtil;
 
 public class Rename {
 	public static void main(String[] args) throws ParseException {
@@ -24,7 +24,7 @@ public class Rename {
 		System.out.println("请输入输出的文件路径：");
 		String SOutPath = scanner.nextLine();
 		//如果路径最后不带路径分隔符，补上路径分隔符，不然文件生成路径不对
-		SOutPath = FileUtil.appendBackwardSlash(SOutPath);
+		SOutPath = FileUtil.appendSeparator(SOutPath);
 		for (File file: AFfile_processDirectory) {
 			//文件修改日期
 			long lDate = file.lastModified();

@@ -1,13 +1,10 @@
-package com.newStdd.util;
+package com.newStdd.io;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import com.newStdd.io.FileFoundException;
-import com.newStdd.io.RootNotFoundException;
 	
 
 /**
@@ -16,8 +13,9 @@ import com.newStdd.io.RootNotFoundException;
 public class FileUtil {
 	/**
 	 * 如果路径最后不带路径分隔符，补上路径分隔符
+	 * @param PSPath 路径
 	 * */
-	public static String appendBackwardSlash(String PSPath) {
+	public static String appendSeparator(String PSPath) {
 		String SNewPath = PSPath;
 		String SLastChar = PSPath.substring(PSPath.length() - 1);
 		if (!SLastChar.equals(File.separator)) {
@@ -26,9 +24,15 @@ public class FileUtil {
 		return SNewPath;
 	}
 	
-	public static String getPath(String PSPathAndFileName) {
-		return PSPathAndFileName.substring(0, PSPathAndFileName.lastIndexOf(File.separator));
-	}
+	/**
+	 * 复制文件
+	 * @param PFileSource 源文件
+	 * @param PSDestinationPathAndFileName 目标路径及文件名
+	 * @param BOverwriteExist 是否覆盖
+	 * @exception FileFoundException 源文件不存在时抛出
+	 * @exception RootNotFoundException 参数PSDestinationPathAndFileName中根目录不存在时抛出
+	 * @exception IOException 读写文件操作错误时抛出
+	 * */	
 	
 	public static void copy(File PFileSource, String PSDestinationPathAndFileName, boolean BOverwriteExist) throws FileFoundException, RootNotFoundException, IOException {
 		//不覆盖已有文件时判断文件是否存在
@@ -38,7 +42,6 @@ public class FileUtil {
 				throw new FileFoundException();
 			}
 		}
-		
 		//新建路径中不存在的路径
 		makeDirectories(getPath(PSDestinationPathAndFileName));
 		//每次读取的字节数
@@ -63,13 +66,66 @@ public class FileUtil {
 			inputStream.close();
 			fileOutputStream.close();
 		}
+	}	
+	
+	/**
+	 * 获取文件扩展名
+	 * @param PFile 文件
+	 * @return null：PFile为null时；file无后缀名时
+	 * */	
+	 public static String getFileExtension(File PFile) {
+		 String fileExtension= null;
+		 if (PFile != null) {
+			 String fileName= PFile.getName();
+			 int dot = fileName.lastIndexOf('.'); 
+			 if ((dot >-1) && (dot < (fileName.length() - 1))) { 
+				 fileExtension= fileName.substring(dot + 1); 
+			 } 
+		 }
+     return fileExtension; 		 
 	}
+	 
+		/**
+		 * 去除扩展名，只获取件名
+		 * @param PFile 文件
+		 * @return null：PFile为null时
+		 * */		 
+   public static String getFileNameNoExtension(File PFile) { 
+  	 String fileNameNoExtension= null;
+  	 if (PFile != null) {
+  		 String fileName= PFile.getName();
+       if ((fileName != null) && (fileName.length() > 0)) { 
+      	 int dot = fileName.lastIndexOf('.'); 
+      	 if ((dot >-1) && (dot < (fileName.length()))) { 
+      		 fileNameNoExtension= fileName.substring(0, dot); 
+      	 } else {
+      		 fileNameNoExtension= fileName;
+      	 }
+       }   		 
+  	 }
+     return fileNameNoExtension; 
+	} 	
+   
+		/**
+		 * 获取包含路径加文件名字符串中的路径
+		 * @param PSPathAndFileName 路径加文件名
+		 * */	   
+ 	public static String getPath(String PSPathAndFileName) {
+ 		File file = new File(PSPathAndFileName);
+ 		//入参是路径时直接返回入参
+ 		if (file.isDirectory()) {
+ 			return PSPathAndFileName;
+ 		} else {
+ 			//入参包括文件名时返回路径名
+ 			return PSPathAndFileName.substring(0, PSPathAndFileName.lastIndexOf(File.separator));
+ 		}
+	}
+	   
 	
 	/**
 	 * 建立给定目录中不存在的目录，如给出\a\b\c，系统中存在\a，则新建目录b、c
-	 * @param PSPath 文件
-	 * @return 正常：file的扩展名</br>
-	 * 				 null：file为null时；file无后缀名时
+	 * @param PSPath 指定的目录
+	 * @exception RootNotFoundException 指定目录中根目录不存在时抛出
 	 * */		
 	public static void makeDirectories(String PSPath) throws RootNotFoundException {
 		String[] ASSeparatorPath = PSPath.split(File.separator + File.separator);
@@ -89,47 +145,4 @@ public class FileUtil {
 			}
 		}
 	}
-
-	/**
-	 * 获取文件扩展名
-	 * @param file 文件
-	 * @return 正常：file的扩展名</br>
-	 * 				 null：file为null时；file无后缀名时
-	 * */	
-	 public static String getFileExtension(File file) {
-		 String fileExtension= null;
-		 if (file != null) {
-			 String fileName= file.getName();
-			 int dot = fileName.lastIndexOf('.'); 
-			 if ((dot >-1) && (dot < (fileName.length() - 1))) { 
-				 fileExtension= fileName.substring(dot + 1); 
-			 } 
-		 }
-     return fileExtension; 		 
-	}
-	 
-		/**
-		 * 获取文件不带扩展名的文件名
-		 * @param file 文件
-		 * @return 正常：file的不带扩展名的文件名</br>
-		 * 				 null：file为null时；file无后缀名时
-		 * 				 与文件名相同值：file的文件名无扩展名时
-		 * */		 
-   public static String getFileNameNoExtension(File file) { 
-  	 String fileNameNoExtension= null;
-  	 if (file!= null) {
-  		 String fileName= file.getName();
-       if ((fileName != null) && (fileName.length() > 0)) { 
-      	 int dot = fileName.lastIndexOf('.'); 
-      	 if ((dot >-1) && (dot < (fileName.length()))) { 
-      		 fileNameNoExtension= fileName.substring(0, dot); 
-      	 } else {
-      		 fileNameNoExtension= fileName;
-      	 }
-       }   		 
-  	 }
-     return fileNameNoExtension; 
-	} 	 
-
-   
 }
